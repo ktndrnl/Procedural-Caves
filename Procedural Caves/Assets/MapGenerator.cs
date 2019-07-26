@@ -14,6 +14,10 @@ public class MapGenerator : MonoBehaviour
 	
 	[Range(0, 100)]
 	public int randomFillPercent;
+
+	public int wallThresholdSize = 50;
+	public int roomThresholdSize = 50;
+	public int pathRadius = 1;
 	
 	private int[,] map;
 
@@ -68,7 +72,7 @@ public class MapGenerator : MonoBehaviour
 	{
 		List<List<Coord>> wallRegions = GetRegions(1);
 
-		int wallThresholdSize = 50;
+		//int wallThresholdSize = 50;
 		foreach (List<Coord> wallRegion in wallRegions)
 		{
 			if (wallRegion.Count < wallThresholdSize)
@@ -82,7 +86,7 @@ public class MapGenerator : MonoBehaviour
 		
 		List<List<Coord>> roomRegions = GetRegions(0);
 
-		int roomThresholdSize = 50;
+		//int roomThresholdSize = 50;
 		List<Room> survivingRooms = new List<Room>();
 		foreach (List<Coord> roomRegion in roomRegions)
 		{
@@ -204,7 +208,7 @@ public class MapGenerator : MonoBehaviour
 		List<Coord> line = GetLine(tileA, tileB);
 		foreach (Coord c in line)
 		{
-			DrawCircle(c, 1);
+			DrawCircle(c, pathRadius);
 		}
 	}
 
